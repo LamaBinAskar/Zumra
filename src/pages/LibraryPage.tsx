@@ -658,17 +658,26 @@ export default function LibraryPage() {
                   </button>
 
                   {/* Download button */}
-                  <button
-                    onClick={() => canDownload && generateLibraryItemPDF(item)}
-                    disabled={!canDownload}
-                    title={!canDownload ? 'لم يُرفق ملف بعد' : 'تحميل كـ PDF'}
-                    className="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all"
-                    style={canDownload
-                      ? { background: 'rgba(13,148,136,0.08)', color: '#0d9488', border: '1px solid rgba(13,148,136,0.14)', cursor: 'pointer' }
-                      : { background: 'rgba(13,40,37,0.04)', color: 'rgba(13,40,37,0.28)', border: '1px solid rgba(13,40,37,0.08)', cursor: 'not-allowed' }}>
-                    <FileDown size={13} />
-                    {canDownload ? 'تحميل PDF' : 'لا يوجد ملف'}
-                  </button>
+                  {hasFile ? (
+                    <a
+                      href={item.fileUrl}
+                      download={(item as any).fileName ?? item.title}
+                      className="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all"
+                      style={{ background: 'rgba(13,148,136,0.08)', color: '#0d9488', border: '1px solid rgba(13,148,136,0.14)' }}>
+                      📎 تحميل الملف المرفق
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => item.summaryContent && generateLibraryItemPDF(item)}
+                      disabled={!item.summaryContent}
+                      className="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all"
+                      style={item.summaryContent
+                        ? { background: 'rgba(13,148,136,0.08)', color: '#0d9488', border: '1px solid rgba(13,148,136,0.14)', cursor: 'pointer' }
+                        : { background: 'rgba(13,40,37,0.04)', color: 'rgba(13,40,37,0.28)', border: '1px solid rgba(13,40,37,0.08)', cursor: 'not-allowed' }}>
+                      <FileDown size={13} />
+                      {item.summaryContent ? 'تحميل PDF' : 'لا يوجد ملف'}
+                    </button>
+                  )}
 
                   {/* AI buttons */}
                   <div className="mt-2 grid grid-cols-2 gap-2">
