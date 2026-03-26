@@ -7,6 +7,7 @@ const SESSION_KEY = 'zumra_session_role';
 interface AuthContextType {
   currentUser: User | Mentor | null;
   isLoading: boolean;
+  sessionLoaded: boolean;
   login: (email: string, password: string, role: UserRole) => Promise<void>;
   logout: () => void;
   switchRole: (role: UserRole) => void; // demo helper
@@ -38,11 +39,13 @@ function userForRole(role: UserRole): User | Mentor {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | Mentor | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionLoaded, setSessionLoaded] = useState(false);
 
   /* Restore session from localStorage on first mount */
   useEffect(() => {
     const saved = localStorage.getItem(SESSION_KEY) as UserRole | null;
     if (saved) setCurrentUser(userForRole(saved));
+    setSessionLoaded(true);
   }, []);
 
   const login = useCallback(async (email: string, _password: string, role: UserRole) => {
@@ -66,7 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser, isLoading, login, logout, switchRole }}>
+    <AuthContext.Provider value={{ currentUser, isLoading, sessionLoaded, login, logout, switchRole }}>
       {children}
     </AuthContext.Provider>
   );

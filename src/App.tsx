@@ -20,10 +20,10 @@ import ChatRoomsPage from './pages/ChatRoomsPage';
 import ProfilePage from './pages/ProfilePage';
 
 function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode; allowedRoles?: string[] }) {
-  const { currentUser } = useAuth();
+  const { currentUser, sessionLoaded } = useAuth();
+  if (!sessionLoaded) return null;
   if (!currentUser) return <Navigate to="/auth" replace />;
   if (allowedRoles && !allowedRoles.includes(currentUser.role)) {
-    // Redirect to appropriate home
     if (currentUser.role === 'admin') return <Navigate to="/admin" replace />;
     if (currentUser.role === 'mentor') return <Navigate to="/mentor" replace />;
     return <Navigate to="/student" replace />;
