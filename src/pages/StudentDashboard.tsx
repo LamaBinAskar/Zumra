@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   BookOpen, Calendar, Star, ArrowLeft,
-  Clock, Award, Flame, Download, ArrowRight, Heart,
+  Clock, Award, Flame, Download, ArrowRight, Heart, Users,
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Avatar from '../components/Avatar';
@@ -150,8 +150,8 @@ export default function StudentDashboard() {
                     <p className="text-xs mt-0.5" style={{ color: 'rgba(13,40,37,0.40)' }}>المرشد</p>
                   </div>
                   <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(13,148,136,0.10)', border: '1px solid rgba(13,148,136,0.20)', color: '#0d9488' }}>
-                    ↔
+                    style={{ background: 'linear-gradient(135deg,rgba(13,148,136,0.12),rgba(13,148,136,0.06))', border: '1.5px solid rgba(13,148,136,0.22)', color: '#0d9488', boxShadow: '0 2px 8px rgba(13,148,136,0.10)' }}>
+                    <Users size={18} />
                   </div>
                   <div className="flex-1 text-left">
                     <Avatar name={currentUser?.name ?? ''} className="w-14 h-14 rounded-2xl border border-[rgba(13,148,136,0.14)] text-base ml-auto mb-2" />
