@@ -487,6 +487,13 @@ export default function LibraryPage() {
                       style={{ background: st.bg, color: st.color, border: `1px solid ${st.border}` }}>
                       {st.label}
                     </span>
+                    {/* Details button */}
+                    <button
+                      onClick={() => setDetailItem(item)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold flex-shrink-0 transition-all hover:brightness-110"
+                      style={{ background: 'rgba(13,148,136,0.10)', color: '#0d9488', border: '1px solid rgba(13,148,136,0.20)' }}>
+                      <Info size={12} /> تفاصيل
+                    </button>
                   </div>
                 );
               })}
