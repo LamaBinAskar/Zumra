@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bell, LogOut, User, ChevronDown, Menu, X, Home } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
@@ -8,6 +8,19 @@ import Avatar from './Avatar';
 export default function Navbar() {
   const { currentUser, logout, switchRole } = useAuth();
   const navigate = useNavigate();
+  const [showPSAU, setShowPSAU] = useState(false);
+  const [logoVisible, setLogoVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLogoVisible(false);
+      setTimeout(() => {
+        setShowPSAU(prev => !prev);
+        setLogoVisible(true);
+      }, 350);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
   const { unreadCount, markNotificationsRead } = useApp();
   const [showNotifs, setShowNotifs] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -56,27 +69,33 @@ export default function Navbar() {
           {/* Logo */}
           <Link to={currentUser.role === 'admin' ? '/admin' : currentUser.role === 'mentor' ? '/mentor' : '/student'}
             className="flex items-center gap-2.5 flex-shrink-0 group">
-            {/* Zumra Logo.jfif — the group-of-people icon */}
-            <img
-              src="/Zumra/Logo.jfif"
-              alt="زمرة"
-              className="transition-transform duration-300 group-hover:scale-105"
-              style={{
-                height: 40, width: 40, borderRadius: 10,
-                objectFit: 'contain',
-                border: '1.5px solid rgba(42,92,78,0.20)',
-                boxShadow: '0 2px 8px rgba(42,92,78,0.12)',
-              }}
-            />
-            {/* Divider */}
-            <div style={{ width: 1, height: 28, background: 'rgba(42,92,78,0.16)', flexShrink: 0 }} />
-            {/* PSAU logo */}
-            <img
-              src="/Zumra/PSAULOGO.png"
-              alt="جامعة الأمير سطام"
-              className="transition-transform duration-300 group-hover:scale-105"
-              style={{ height: 38, width: 'auto', objectFit: 'contain' }}
-            />
+            {/* Switching logo: Zumra ↔ PSAU */}
+            <div style={{ width: 40, height: 40, position: 'relative', flexShrink: 0 }}>
+              <img
+                src="/Zumra/Logo.jfif"
+                alt="زمرة"
+                style={{
+                  position: 'absolute', inset: 0,
+                  height: 40, width: 40, borderRadius: 10,
+                  objectFit: 'contain',
+                  border: '1.5px solid rgba(42,92,78,0.20)',
+                  boxShadow: '0 2px 8px rgba(42,92,78,0.12)',
+                  opacity: logoVisible && !showPSAU ? 1 : 0,
+                  transition: 'opacity 0.35s ease',
+                }}
+              />
+              <img
+                src="/Zumra/PSAULOGO.png"
+                alt="جامعة الأمير سطام"
+                style={{
+                  position: 'absolute', inset: 0,
+                  height: 40, width: 40,
+                  objectFit: 'contain',
+                  opacity: logoVisible && showPSAU ? 1 : 0,
+                  transition: 'opacity 0.35s ease',
+                }}
+              />
+            </div>
             <div className="flex flex-col leading-tight">
               <span className="text-lg font-black transition-colors duration-200 group-hover:text-[#2a5c4e]" style={{ color: '#1f4d3e', letterSpacing: '-0.5px' }}>زُمرة</span>
               <span className="text-[10px]" style={{ color: 'rgba(31,77,62,0.45)' }}>جامعة الأمير سطام بن عبدالعزيز</span>
