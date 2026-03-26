@@ -94,8 +94,10 @@ function CertificatePreview({ cert }: { cert: typeof MOCK_CERTIFICATES[0] }) {
         <p className="text-sm leading-loose mb-5" style={{ color: 'rgba(255,255,255,0.72)' }}>
           {cfg.subtitle}
           <br />
-          <span style={{ color: 'rgba(255,255,255,0.50)', fontSize: 12 }}>
-            سائلاً الله أن يتقبل منه صالح الأعمال ويعيده علينا بالخير واليمن والبركات
+          <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12 }}>
+            وذلك لما أبداه من تفانٍ في تقديم المساعدة لزملائه وإرشادهم أكاديمياً،
+            وتطوّعه بسخاء وقته وجهده في خدمة مجتمعه الجامعي.
+            <br />مع تمنياتنا له بالتوفيق والنجاح في مسيرته العلمية والمهنية.
           </span>
         </p>
 
