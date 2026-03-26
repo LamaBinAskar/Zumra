@@ -149,9 +149,9 @@ export default function StudentDashboard() {
                     <p className="text-base font-bold text-[#0d2825]">{nextSession.mentorName}</p>
                     <p className="text-xs mt-0.5" style={{ color: 'rgba(13,40,37,0.40)' }}>المرشد</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: 'rgba(13,148,136,0.10)', border: '1px solid rgba(13,148,136,0.20)', color: '#0d9488' }}>
-                    VS
+                    ↔
                   </div>
                   <div className="flex-1 text-left">
                     <Avatar name={currentUser?.name ?? ''} className="w-14 h-14 rounded-2xl border border-[rgba(13,148,136,0.14)] text-base ml-auto mb-2" />
