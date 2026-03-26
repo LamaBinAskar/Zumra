@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AppProvider } from './contexts/AppContext';
 import CustomCursor from './components/CustomCursor';
@@ -38,11 +38,7 @@ function AppRoutes() {
     <Routes>
       {/* Public — always accessible */}
       <Route path="/" element={<LandingPage />} />
-      <Route path="/auth" element={
-        currentUser
-          ? <Navigate to={currentUser.role === 'admin' ? '/admin' : currentUser.role === 'mentor' ? '/mentor' : '/student'} replace />
-          : <AuthPage />
-      } />
+      <Route path="/auth" element={<AuthPage />} />
 
       {/* Student routes */}
       <Route path="/student" element={
@@ -107,14 +103,25 @@ function AppRoutes() {
   );
 }
 
+const CHATBOT_PAGES = ['/', '/student', '/mentor', '/admin'];
+
+function GlobalUI() {
+  const { pathname } = useLocation();
+  const showChat = CHATBOT_PAGES.includes(pathname);
+  return (
+    <>
+      <CustomCursor />
+      {showChat && <ChatBot />}
+    </>
+  );
+}
+
 export default function App() {
   return (
     <HashRouter>
       <AuthProvider>
         <AppProvider>
-          {/* Global UI — cursor + chatbot appear on every page */}
-          <CustomCursor />
-          <ChatBot />
+          <GlobalUI />
           <AppRoutes />
         </AppProvider>
       </AuthProvider>

@@ -86,7 +86,7 @@ export default function LibraryDetailsModal({ item, isAdmin, onClose, onApprove,
             {[
               { label: 'المادة',           value: item.subject },
               { label: 'الفصل',            value: item.semester },
-              { label: 'المستوى',          value: item.level ? `المستوى ${item.level}` : 'كل المستويات' },
+              { label: 'المستوى',          value: (item as any).level ? `المستوى ${(item as any).level}` : 'كل المستويات' },
               { label: 'السنة الأكاديمية', value: item.academicYear },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl p-3"
