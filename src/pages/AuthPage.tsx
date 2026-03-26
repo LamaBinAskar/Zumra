@@ -28,10 +28,16 @@ const ROLE_OPTIONS: {
 export default function AuthPage() {
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
-  const [email,          setEmail]          = useState('student@uni.edu.sa');
+  const ROLE_EMAILS: Record<UserRole, string> = {
+    student: 'student@uni.edu.sa',
+    mentor:  'studenthelper.name@uni.edu.sa',
+    admin:   'admin.name@uni.edu.sa',
+  };
+
+  const [selectedRole,   setSelectedRole]   = useState<UserRole>('student');
+  const [email,          setEmail]          = useState(ROLE_EMAILS['student']);
   const [password,       setPassword]       = useState('123456');
   const [showPassword,   setShowPassword]   = useState(false);
-  const [selectedRole,   setSelectedRole]   = useState<UserRole>('student');
   const [error,          setError]          = useState('');
 
   async function handleLogin(e: React.FormEvent) {
@@ -163,7 +169,7 @@ export default function AuthPage() {
                   <button
                     key={r.role}
                     type="button"
-                    onClick={() => setSelectedRole(r.role)}
+                    onClick={() => { setSelectedRole(r.role); setEmail(ROLE_EMAILS[r.role]); }}
                     className="w-full flex items-center gap-3 p-3 rounded-xl transition-all text-right"
                     style={isSelected ? {
                       background: `${r.color}14`,
