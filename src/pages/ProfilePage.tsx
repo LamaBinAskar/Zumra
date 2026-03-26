@@ -16,14 +16,28 @@ const ROLE_COLORS: Record<string, { bg: string; color: string; border: string }>
   admin:   { bg: 'rgba(217,119,6,0.10)',  color: '#d97706',  border: 'rgba(217,119,6,0.25)'  },
 };
 
+function computeEmail(role: string | undefined, name: string, fallback: string): string {
+  if (role === 'mentor') {
+    const slug = name.trim().split(/\s+/)[0].toLowerCase().replace(/[^a-z0-9]/g, '') || 'mentor';
+    return `studenthelper.${slug}@uni.edu.sa`;
+  }
+  if (role === 'admin') {
+    const slug = name.trim().split(/\s+/)[0].toLowerCase().replace(/[^a-z0-9]/g, '') || 'admin';
+    return `admin.${slug}@uni.edu.sa`;
+  }
+  return fallback;
+}
+
 export default function ProfilePage() {
   const { currentUser } = useAuth();
   const [editing, setEditing]   = useState(false);
   const [saved,   setSaved]     = useState(false);
 
+  const displayEmail = computeEmail(currentUser?.role, currentUser?.name ?? '', currentUser?.email ?? '');
+
   const [form, setForm] = useState({
     name:    currentUser?.name    ?? '',
-    email:   currentUser?.email   ?? '',
+    email:   displayEmail,
     college: currentUser?.college ?? '',
     major:   currentUser?.major   ?? '',
   });
@@ -71,7 +85,7 @@ export default function ProfilePage() {
                 {ROLE_LABELS[currentUser.role]}
               </span>
             </div>
-            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.60)' }}>{currentUser.email}</p>
+            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.60)' }}>{displayEmail}</p>
           </div>
         </div>
       </div>
