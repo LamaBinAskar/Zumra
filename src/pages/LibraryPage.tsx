@@ -733,9 +733,9 @@ export default function LibraryPage() {
                           <a
                             href={item.fileUrl}
                             download={(item as any).fileName ?? item.title}
-                            className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg text-[10px] font-semibold transition-colors hover:brightness-110"
-                            style={{ background: 'rgba(14,116,144,0.12)', color: '#0e7490', border: '1px solid rgba(14,116,144,0.22)' }}>
-                            <Download size={11} /> تحميل الملف واستعراضه
+                            className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg text-[10px] font-bold transition-all hover:brightness-110"
+                            style={{ background: 'linear-gradient(135deg,#0d2825,#0d9488)', color: '#fff' }}>
+                            <FileDown size={11} /> تحميل PDF
                           </a>
                         </div>
                       ) : null}
