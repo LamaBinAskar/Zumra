@@ -3,7 +3,7 @@ import {
   Users, BookOpen, Award, TrendingUp, Calendar,
   BarChart2, Activity, Star, ArrowUpRight, Download,
   Plus, Trash2, X, Check, UserPlus, Mail, BookMarked,
-  CheckCircle2, XCircle, Clock, MessageSquare, Hash, AlertCircle, FileText
+  CheckCircle2, XCircle, Clock, MessageSquare, Hash, AlertCircle, FileText, FileDown
 } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -481,8 +481,18 @@ export default function AdminDashboard() {
                             <button onClick={() => setDetailItem(item)}
                               className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all hover:brightness-110"
                               style={{ background: 'linear-gradient(135deg,#0d2825,#0f4a42)', color: '#fff' }}>
-                              <AlertCircle size={12} /> التفاصيل والملف
+                              <AlertCircle size={12} /> التفاصيل
                             </button>
+                            {/* PDF download */}
+                            {(item as any).fileUrl && (item as any).fileUrl !== '#' && (
+                              <a
+                                href={(item as any).fileUrl}
+                                download={(item as any).fileName ?? item.title}
+                                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all hover:brightness-110"
+                                style={{ background: 'linear-gradient(135deg,#0d2825,#0d9488)', color: '#fff' }}>
+                                <FileDown size={12} /> تحميل PDF
+                              </a>
+                            )}
                             <button onClick={() => approveLibraryItem(item.id)}
                               className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all hover:brightness-110"
                               style={{ background: 'rgba(5,150,105,0.10)', color: '#059669', border: '1px solid rgba(5,150,105,0.20)' }}>
