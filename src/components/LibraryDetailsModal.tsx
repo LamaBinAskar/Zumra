@@ -115,7 +115,6 @@ export default function LibraryDetailsModal({ item, isAdmin, onClose, onApprove,
           {hasFile && (
             <div className="rounded-xl p-4 space-y-2"
               style={{ background: 'rgba(14,116,144,0.06)', border: '2px solid rgba(14,116,144,0.22)' }}>
-              <p className="text-xs font-bold" style={{ color: '#0e7490' }}>📎 الملف المرفق</p>
               {item.fileName && (
                 <div className="flex items-center gap-2">
                   <FileDown size={14} style={{ color: '#0e7490' }} />
