@@ -111,29 +111,6 @@ export default function LibraryDetailsModal({ item, isAdmin, onClose, onApprove,
             </div>
           </div>
 
-          {/* ── FILE DOWNLOAD ── */}
-          {hasFile && (
-            <div className="rounded-xl p-4 space-y-2"
-              style={{ background: 'rgba(14,116,144,0.06)', border: '2px solid rgba(14,116,144,0.22)' }}>
-              {item.fileName && (
-                <div className="flex items-center gap-2">
-                  <FileDown size={14} style={{ color: '#0e7490' }} />
-                  <p className="text-xs flex-1 truncate" style={{ color: 'rgba(13,40,37,0.65)' }}>
-                    {item.fileName}
-                    {item.fileSize ? ` (${(item.fileSize / 1024 / 1024).toFixed(2)} MB)` : ''}
-                  </p>
-                </div>
-              )}
-              <a
-                href={item.fileUrl}
-                download={item.fileName ?? item.title}
-                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-bold transition-all hover:brightness-110"
-                style={{ background: 'linear-gradient(135deg,#0d2825,#0e7490)', color: '#fff' }}>
-                <Download size={15} />
-                تحميل الملف واستعراضه
-              </a>
-            </div>
-          )}
 
           {/* Summary text preview */}
           {item.summaryContent && (
