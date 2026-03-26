@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell
+  ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, Legend
 } from 'recharts';
 import Layout from '../components/Layout';
 import Avatar from '../components/Avatar';
@@ -189,17 +189,20 @@ export default function AdminDashboard() {
 
             <div className="rounded-2xl p-6" style={CARD}>
               <h2 className="text-sm font-semibold text-[#0d2825] mb-6">المواد الأكثر طلباً</h2>
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={240}>
                 <PieChart>
                   <Pie data={stats.popularSubjects.slice(0, 5)} dataKey="count" nameKey="name"
-                    cx="50%" cy="50%" outerRadius={75}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    labelLine={{ stroke: 'rgba(13,148,136,0.30)' }}>
+                    cx="50%" cy="45%" outerRadius={72}
+                    label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                    labelLine={false}>
                     {stats.popularSubjects.slice(0, 5).map((_, i) => (
                       <Cell key={i} fill={CHART_COLORS[i]} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={CHART_STYLE} itemStyle={{ color: '#0d2825' }} />
+                  <Tooltip contentStyle={CHART_STYLE} itemStyle={{ color: '#0d2825' }}
+                    formatter={(value, name) => [value, name]} />
+                  <Legend iconType="circle" iconSize={8}
+                    formatter={(value) => <span style={{ fontSize: 11, color: '#0d2825' }}>{value}</span>} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
