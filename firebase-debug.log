@@ -1,0 +1,39 @@
+[debug] [2026-03-18T13:43:51.993Z] ----------------------------------------------------------------------
+[debug] [2026-03-18T13:43:51.997Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lamaa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create zumra-psau
+[debug] [2026-03-18T13:43:51.997Z] CLI Version:   15.10.1
+[debug] [2026-03-18T13:43:51.998Z] Platform:      win32
+[debug] [2026-03-18T13:43:51.998Z] Node Version:  v24.13.1
+[debug] [2026-03-18T13:43:51.998Z] Time:          Wed Mar 18 2026 16:43:51 GMT+0300 (Arabian Standard Time)
+[debug] [2026-03-18T13:43:51.998Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-03-18T13:43:52.246Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-18T13:43:52.246Z] > authorizing via signed-in user (binaskar.lama@gmail.com)
+[debug] [2026-03-18T13:44:00.110Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:00.110Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:00.111Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-03-18T13:44:00.111Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"zumra-psau","name":"zumra-psau"}
+[debug] [2026-03-18T13:44:01.779Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-03-18T13:44:01.779Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.8760928464227671324"}
+[debug] [2026-03-18T13:44:01.779Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:01.780Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:01.780Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 [none]
+[debug] [2026-03-18T13:44:02.945Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 200
+[debug] [2026-03-18T13:44:02.945Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 {"name":"operations/create_project.global.8760928464227671324"}
+[debug] [2026-03-18T13:44:03.462Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-03-18T13:44:03.464Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:03.465Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:03.466Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 [none]
+[debug] [2026-03-18T13:44:03.832Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 200
+[debug] [2026-03-18T13:44:03.832Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.8760928464227671324 {"name":"operations/create_project.global.8760928464227671324","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"310496274010","projectId":"zumra-psau","lifecycleState":"ACTIVE","name":"zumra-psau","createTime":"2026-03-18T13:44:01.103Z"}}
+[debug] [2026-03-18T13:44:03.839Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:03.839Z] Checked if tokens are valid: true, expires at: 1773844912546
+[debug] [2026-03-18T13:44:03.840Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/zumra-psau:addFirebase [none]
+[debug] [2026-03-18T13:44:05.359Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/zumra-psau:addFirebase 403
+[debug] [2026-03-18T13:44:05.360Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/zumra-psau:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-03-18T13:44:05.363Z] Request to https://firebase.googleapis.com/v1beta1/projects/zumra-psau:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2026-03-18T13:44:05.655Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/zumra-psau:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\lamaa\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\lamaa\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:333:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.

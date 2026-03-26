@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zumra",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node",
+      "runtimeArgs": [
+        "C:\\Users\\lamaa\\Desktop\\ClaudePulsehear\\.claude\\worktrees\\hardcore-diffie\\zumra\\node_modules\\.bin\\vite",
+        "--port",
+        "3000",
+        "--host"
+      ],
+      "port": 3000
+    }
+  ]
+}
