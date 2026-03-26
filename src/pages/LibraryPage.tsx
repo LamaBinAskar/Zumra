@@ -494,6 +494,16 @@ export default function LibraryPage() {
                       style={{ background: 'rgba(13,148,136,0.10)', color: '#0d9488', border: '1px solid rgba(13,148,136,0.20)' }}>
                       <Info size={12} /> تفاصيل
                     </button>
+                    {/* Download PDF button */}
+                    {(item as any).fileUrl && (item as any).fileUrl !== '#' && (
+                      <a
+                        href={(item as any).fileUrl}
+                        download={(item as any).fileName ?? item.title}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold flex-shrink-0 transition-all hover:brightness-110"
+                        style={{ background: 'linear-gradient(135deg,#0d2825,#0d9488)', color: '#fff' }}>
+                        <FileDown size={12} /> تحميل PDF
+                      </a>
+                    )}
                   </div>
                 );
               })}
