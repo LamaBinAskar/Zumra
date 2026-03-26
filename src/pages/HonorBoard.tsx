@@ -47,7 +47,7 @@ function Sparkle({ style }: { style: React.CSSProperties }) {
 export default function HonorBoard() {
   const { currentUser } = useAuth();
   const [sortBy, setSortBy] = useState<'points' | 'sessions' | 'rating'>('points');
-  const [filter, setFilter] = useState('كلية الهندسة وعلوم الحاسب');
+  const [filter, setFilter] = useState('كلية هندسة وعلوم الحاسب بالخرج');
 
   const sorted = [...MOCK_MENTORS].sort((a, b) => {
     if (sortBy === 'sessions') return b.totalSessions - a.totalSessions;
@@ -55,7 +55,7 @@ export default function HonorBoard() {
     return b.points - a.points;
   });
 
-  const colleges = ['كلية الهندسة وعلوم الحاسب'];
+  const colleges = ['كلية هندسة وعلوم الحاسب بالخرج'];
   const filtered = sorted.filter(m => m.college === filter);
 
   return (
@@ -245,11 +245,10 @@ export default function HonorBoard() {
           ))}
         </div>
 
-        <select value={filter} onChange={e => setFilter(e.target.value)}
-          className="rounded-xl px-3 py-2 text-sm focus:outline-none"
-          style={{ background: '#f7fcfb', border: '1px solid rgba(13,148,136,0.16)', color: '#0d2825' }}>
-          {colleges.map(c => <option key={c} value={c} style={{ background: '#ffffff', color: '#0d2825' }}>{c}</option>)}
-        </select>
+        <span className="rounded-xl px-4 py-2 text-sm font-semibold"
+          style={{ background: 'rgba(13,148,136,0.08)', border: '1px solid rgba(13,148,136,0.18)', color: '#0d9488' }}>
+          كلية هندسة وعلوم الحاسب بالخرج
+        </span>
       </div>
 
       {/* ══ FULL LEADERBOARD ══ */}
